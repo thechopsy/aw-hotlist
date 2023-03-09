@@ -1,0 +1,126 @@
+div.card-inner
+  div.card-front
+    h2= profile.bio.name
+    div.image(id= 'poster' style= `background-image: url('${ profile.bio.images[0] }')`,  data-imgs= profile.bio.images.join('|'))
+    div.flag
+      span= format.flag(profile.bio.nationality)
+    div.refresh(onclick= "javascript:refresh()")
+      i.fa.fa-refresh
+    table.info
+      tr
+        th
+          i.fa.fa-lightbulb-o
+          | Available
+        td= format.bool(profile.aw.available, 'Yes', 'Not Showing')
+      tr
+        th
+          i.fa.fa-sign-in
+          | Last Login
+        td= format.string(profile.aw.login)
+      tr
+        th
+          i.fa.fa-phone
+          | Telephone
+        td
+          a(href= `tel:${ format.string(profile.bio.telephone) }`)= format.string(profile.bio.telephone, 'Not Specified')
+      tr
+        th
+          i.fa.fa-link
+          | Links
+        td
+          a.button(target="new" href= profile.aw.link) ADW
+          form(method="post" target="new" action="https://www.ukpunting.com/index.php?action=searchposts2")
+            input(type="hidden" name="query" value= profile.bio.name)
+            button(type="submit" name="submit" value="Search") UKP
+      tr
+        td.age(colspan= '2')= '...'
+  div.card-back
+    h2= profile.bio.name
+    table.info
+      tr
+        th
+          i.fa.fa-certificate
+          | Verified
+        td= format.bool(profile.aw.verified, 'Yes', 'No')
+      tr.gap
+        th(colspan= 2)
+          hr
+      tr
+        th
+          i.fa.fa-birthday-cake
+          | Age
+        td= format.string(profile.bio.age, 'Not Specified')
+      tr
+        th
+          i.fa.fa-venus-mars
+          | Gender
+        td= format.string(profile.bio.gender, 'Not Specified')
+      tr
+        th
+          i.fa.fa-flag-o
+          | Origin
+        td= format.string(profile.bio.nationality, 'Not Specified')
+      tr.gap
+        th(colspan= 2)
+          hr
+      tr
+        th
+          i.fa.fa-handshake-o
+          | Joined
+        td= format.date(profile.aw.joined)
+      tr
+        th
+          i.fa.fa-star-o
+          | Ratings
+        td= format.number(profile.aw.rating)
+      tr
+        th
+          i.fa.fa-eye
+          | Views
+        td= format.number(profile.aw.views)
+      tr.gap
+        th(colspan= 2)
+          hr
+      tr
+        th
+          i.fa.fa-map-marker
+          | Town
+        td= format.string(profile.geo.town)
+      tr
+        th
+          i.fa.fa-map-marker
+          | County
+        td= format.string(profile.geo.county)
+      tr
+        th
+          i.fa.fa-map-marker
+          | Region
+        td= format.string(profile.geo.region)
+    table.rates
+      tr
+        th
+        th= 15
+        th= 30
+        th= 45
+        th= 60
+        th= 120
+        th= 240
+      tr
+        td.incall
+          i.fa.fa-sign-in
+        td= format.currency(profile.rates.incall[0])
+        td= format.currency(profile.rates.incall[1])
+        td= format.currency(profile.rates.incall[2])
+        td= format.currency(profile.rates.incall[3])
+        td= format.currency(profile.rates.incall[5])
+        td= format.currency(profile.rates.incall[7])
+
+      tr
+        td.outcall
+          i.fa.fa-sign-out
+        td= format.currency(profile.rates.outcall[0])
+        td= format.currency(profile.rates.outcall[1])
+        td= format.currency(profile.rates.outcall[2])
+        td= format.currency(profile.rates.outcall[3])
+        td= format.currency(profile.rates.outcall[5])
+        td= format.currency(profile.rates.outcall[7])

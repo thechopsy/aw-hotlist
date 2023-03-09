@@ -1,0 +1,22 @@
+doctype html
+html
+  head
+    meta(charset="utf-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1")
+    link(rel="shortcut icon", href="/favicon.ico")
+    link(rel="stylesheet", href="https://fonts.googleapis.com/css?family=Source+Sans+Pro")
+    link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css")
+    link(rel="stylesheet", href="/assets/app.css")
+    title= 'AdultWork » Hot List'
+  body
+    h1= 'AdultWork » Hot List'
+    div.nav.vertical.above(onclick = "javascript:go('prev')")
+    div.cards
+      div.nav.horizontal.left(onclick= "javascript:go('left')")
+      div.card.current
+      div.card
+      div.nav.horizontal.right(onclick = "javascript:go('right')")
+    div.nav.vertical.below(onclick = "javascript:go('next')")
+    script.
+      const IDS = [!{ ids.join(',') }];
+    script(src="/assets/app.js")
