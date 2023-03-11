@@ -31,6 +31,10 @@ server.router.get('/model/:id', (req, res) => {
 
 // --- list
 
+server.router.get('/hotlist', (req, res) => {
+    res.render('cards');
+});
+
 server.router.get('/hotlist/:ids', (req, res) => {
     res.render('cards', { ids: req.params.ids.split(',').map(i => i.trim()) });
 });
