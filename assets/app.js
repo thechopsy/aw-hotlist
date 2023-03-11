@@ -101,6 +101,20 @@ function flop(direction) {
     }
 }
 
+// --- edit handler ------------------------------------------------------------
+
+function edit() {
+    let element = document.createElement('div');
+    let context = [];
+
+    deck.all(card => {
+        element.innerHTML = card.content;
+        context.push(`${ card.id }|${ card.fresh ? '' : card.error ? '!' : element.querySelector('h2').innerText }`);
+    });
+
+    window.location.href = `/edit/${ btoa(context.join(',')) }`;
+}
+
 // --- gallery handler ---------------------------------------------------------
 
 function gallery() {
@@ -377,6 +391,10 @@ class Deck {
 
     prev() {
         this.curr = Math.max(this.curr - 1, 0);
+    }
+
+    all(cb) {
+        this.cards.forEach(card => cb(card));
     }
 }
 

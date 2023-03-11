@@ -39,10 +39,26 @@ server.router.get('/hotlist/:ids', (req, res) => {
     res.render('cards', { ids: req.params.ids.split(',').map(i => i.trim()) });
 });
 
-// --- cards
+// --- edit
+
+server.router.get('/edit', (req, res) => {
+    res.render('edit', { items: [] });
+});
+
+server.router.get('/edit/:state', (req, res) => {
+    let state = atob(req.params.state).split(',');
+    let items = state.map(i => {
+        let parts = i.split('|');
+        return { id: parts[0], name: parts[1] }
+    });
+
+    res.render('edit', { items });
+});
+
+// --- home
 
 server.router.get('/', (req, res) => {
-    res.render('cards', { id: req.query.id });
+    res.render('home', { id: req.query.id });
 });
 
 // --- main
