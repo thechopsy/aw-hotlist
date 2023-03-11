@@ -274,8 +274,8 @@ function refresh() {
     before.classList.remove('spin');
     enqueue(() => { before.classList.add('spin') });
 
-    deck.current.reload(() => {
-        get('.current').innerHTML = deck.current.content;
+    deck.current.reload((error, content) => {
+        get('.current').innerHTML = content;
 
         let after = get('.current .refresh');
         after.classList.add('spin');
