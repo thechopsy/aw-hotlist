@@ -219,10 +219,12 @@ function load(down) {
 
     let card  = {
         curr: get('.current'),
-        buff: get(':not(.current)')
+        buff: get(':not(.current)'),
+        info: nav('.control.info')
     };
 
     navigation();
+    card.info.innerHTML = `${ deck.index } of ${ deck.count }`;
 
     card.buff.classList.remove('slide');
     card.curr.classList.remove('slide');
@@ -355,6 +357,14 @@ class Deck {
 
     get current() {
         return this.cards[this.curr];
+    }
+
+    get index() {
+        return this.curr + 1;
+    }
+
+    get count() {
+        return this.cards.length;
     }
 
     get stalest() {

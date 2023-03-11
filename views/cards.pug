@@ -10,13 +10,15 @@ html
     title= 'AdultWork » Hot List'
   body
     h1= 'AdultWork » Hot List'
-    div.nav.vertical.above(onclick = "javascript:go('prev')")
+    div.nav.control.info= '...'
+    div.nav.control.edit(onclick = "edit()")= 'edit'
+    div.nav.vertical.above(onclick = "go('prev')")
     div.cards
-      div.nav.horizontal.left(onclick= "javascript:go('left')")
+      div.nav.horizontal.left(onclick= "go('left')")
       div.card.current
       div.card
-      div.nav.horizontal.right(onclick = "javascript:go('right')")
-    div.nav.vertical.below(onclick = "javascript:go('next')")
+      div.nav.horizontal.right(onclick = "go('right')")
+    div.nav.vertical.below(onclick = "go('next')")
     script.
-      const IDS = [!{ ids.join(',') }];
+      const IDS = [!{ (ids || [0]).join(',') }];
     script(src="/assets/app.js")

@@ -116,6 +116,25 @@ a:active {
     padding-top: 8px;
 }
 
+.nav.control {
+    font-family: sans-serif;
+    font-size: calc(var(--f) * 0.9);
+    padding-bottom: calc(var(--f) * 0.5);
+    text-align: center;
+    position: fixed;
+    width: calc(0.3 * var(--card-width));
+    bottom: calc((100% - var(--card-height)) / 2 + var(--card-height));
+    z-index: 3;
+}
+
+.nav.control.info {
+    left: calc((100vw - var(--card-width)) / 2);
+}
+
+.nav.control.edit {
+    right: calc((100vw - var(--card-width)) / 2);
+}
+
 .cards {
     min-height: 100vh;
     min-width: 100vw;
