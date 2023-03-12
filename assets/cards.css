@@ -1,0 +1,337 @@
+
+:root {
+    --card-width: 400px;
+    --card-size-ratio: 1.75;
+    --card-speed: 0.75s;
+    --card-height: calc(var(--card-width) * var(--card-size-ratio));
+
+    --w: calc(var(--card-width ) * 0.01);
+    --h: calc(var(--card-height) * 0.01);
+    --f: calc(var(--card-height) * 0.0275);
+}
+
+body {
+    font-size: var(--f);
+    color: whitesmoke;
+}
+
+h1 {
+    display: none;
+    visibility: hidden;
+}
+
+.nav {
+    font-family: 'FontAwesome';
+    font-size: calc(var(--f) * 1.8);
+    color: grey;
+    cursor: pointer;
+}
+
+.nav.horizontal {
+    position: fixed;
+    height: var(--card-height);
+    line-height: var(--card-height);
+    width: calc((100vw - var(--card-width)) / 2);
+    top: calc((100% - var(--card-height)) / 2);
+    padding: calc(0.08 * var(--card-width));
+}
+
+.nav.horizontal.left {
+    text-align: right;
+    left: 0;
+}
+
+.nav.horizontal.left::after {
+    content: '\f100';
+}
+
+.nav.horizontal.right {
+    text-align: left;
+    right: 0;
+}
+
+.nav.horizontal.right::after {
+    content: '\f101';
+}
+
+.nav.vertical {
+    position: fixed;
+    left: 50%;
+    transform: translate(-50%, 0);
+    text-align: center;
+    width: var(--card-width);
+    height: calc((100% - var(--card-height)) / 2);
+    z-index: 2;
+}
+
+.nav.vertical.above::after,
+.nav.vertical.below::after {
+    display: inline-block;
+    position: fixed;
+    left: 50%;
+    transform: translate(-50%, 0);
+}
+
+.nav.vertical.above {
+    top: 0;
+}
+
+.nav.vertical.above::after {
+    content: '\f102';
+    bottom: 0;
+    padding-bottom: calc(0.015 *  var(--card-height));
+}
+
+.nav.vertical.below {
+    bottom: 0;
+}
+
+.nav.vertical.below::after {
+    content: '\f103';
+    top: 0;
+    padding-top: calc(0.015 *  var(--card-height));
+}
+
+.nav.control {
+    position: fixed;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: calc(var(--f) * 0.95);
+    text-align: center;
+    padding-bottom: calc(var(--f) * 0.575);
+    width: calc(0.3 * var(--card-width));
+    bottom: calc((100% - var(--card-height)) / 2 + var(--card-height));
+    z-index: 3;
+}
+
+.nav.control.info {
+    left: calc((100vw - var(--card-width)) / 2);
+}
+
+.nav.control.edit {
+    right: calc((100vw - var(--card-width)) / 2);
+}
+
+.cards {
+    min-height: 100vh;
+    min-width: 100vw;
+}
+
+.card {
+    max-width: var(--card-width);
+    min-width: var(--card-width);
+    height: var(--card-height);
+    perspective: 2000px;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transition: none;
+    transform: translate(calc(-0.5 * var(--card-width)), calc(-0.5 * var(--card-height)));
+}
+
+.card.loading {
+    background-color: var(--color-primary);
+    border: 1px solid #bbb;
+    border-radius: calc(var(--w) * 10);
+}
+
+.card.slide {
+    transition: top var(--card-speed);
+}
+
+.card .card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform var(--card-speed);
+    transform-style: preserve-3d;
+    border: 1px solid #bbb;
+    border-radius: calc(var(--w) * 10);
+    box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.5);
+}
+
+.card .card-inner .card-front,
+.card .card-inner .card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    background: var(--color-primary);
+    border: 1px solid white;
+    border-radius: calc(var(--w) * 10);
+    border-width: calc(var(--w) * 5);
+}
+
+.card-inner .card-back {
+    transform: rotateY(180deg);
+}
+
+.card h2 {
+    width: 100%;
+    height:  calc(var(--h) * 8.5);
+    line-height: calc(var(--h) * 8.5);
+    font-size: calc(var(--f) * 1.5);
+    padding: 0 calc(var(--w) * 4);
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.card.loading h2 {
+    height: var(--card-height);
+    line-height: var(--card-height);
+}
+
+.card .image {
+    width: 100%;
+    height: calc(var(--h) * 55);
+    margin-bottom: var(--h);
+    background-position: center center;
+    background-size: cover;
+}
+
+.card .flag,
+.card .refresh {
+    margin-top: calc(var(--h) * -10);
+}
+
+.card .flag {
+    margin-left: calc(var(--w) * 4);
+    font-size: calc(var(--f) * 2.5);
+    float: left;
+}
+
+.card .refresh {
+    margin-right: calc(var(--w) * 4);
+    font-size: calc(var(--f) * 1.8);
+    float: right;
+    color: white;
+    border-radius: 50%;
+    text-align: center;
+    vertical-align: middle;
+    width: calc(var(--w) * 12);
+    height: calc(var(--w) * 12);
+    line-height: calc(var(--w) * 12);
+    background-color: rgba(0, 0, 0, 0.5);
+    transition: transform var(--card-speed);
+}
+
+.card .refresh.spin {
+    transform: rotate(360deg);
+}
+
+.card .info {
+    min-width: calc(var(--card-width) * 0.9);
+    max-width: calc(var(--card-width) * 0.9);
+    border-collapse: collapse;
+}
+
+.card .card-back .info {
+    margin-top: var(--h);
+}
+
+.card .info th,
+.card .info td {
+    height: calc(var(--h) * 5.75);
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.card .info th {
+    padding-left: calc(var(--w) * 3.5);
+    min-width: calc(var(--card-width) * 0.9 * 0.45);
+    max-width: calc(var(--card-width) * 0.9 * 0.45);
+    text-align: left;
+    font-weight: normal;
+}
+
+.card .info td {
+    padding-right: calc(var(--w) * 3.5);
+    min-width: calc(var(--card-width) * 0.9 * 0.55);
+    max-width: calc(var(--card-width) * 0.9 * 0.55);
+    text-align: right;
+    white-space: nowrap;
+}
+
+.card .info td.age {
+    padding: 0;
+    text-align: center;
+    white-space: nowrap;
+    font-size: calc(var(--f) * 0.9);
+    font-style: italic;
+}
+
+.card .info th i {
+    min-width: calc(var(--w) * 4);
+    max-width: calc(var(--w) * 4);
+    margin-right: calc(var(--w) * 3);
+    text-align: center;
+}
+
+.card .info .gap th {
+    height: calc(var(--h) * 1.75);
+}
+
+.card .info .gap th hr {
+    border: 0;
+    height: 1px;
+    width: calc(var(--card-width) * 0.85);
+    background-image: linear-gradient(to right, var(--color-primary), whitesmoke, var(--color-primary));
+}
+
+.card .rates {
+    width: calc(var(--card-width) * 0.82);
+    margin-left: 5%;
+    margin-top: calc(var(--h) * 3);
+    border-collapse: collapse;
+}
+
+.card .rates th,
+.card .rates td {
+    height: calc(var(--h) * 5);
+    font-size: calc(var(--f) * 0.8);
+}
+
+.card .rates th,
+.card .rates td {
+    width: 15.5%;
+    font-weight: normal;
+    text-align: center;
+    vertical-align: middle;
+    border-right: 1px solid #ddd;
+}
+
+.card .rates th:first-child,
+.card .rates td:first-child {
+    width: 7%;
+    text-align: left;
+}
+
+.card .rates td.outcall {
+    text-align: right;
+    transform: rotateY(180deg) translateX(calc(var(--w) * 0.9));
+}
+
+.card .rates th {
+    border-bottom: 1px solid #ddd;
+}
+
+.card .rates th:last-child,
+.card .rates td:last-child {
+    border-right: 0;
+}
+
+.card .info form {
+    display: inline;
+}
+
+.card .info a.button,
+.card .info button {
+    background-color: inherit;
+    color: inherit;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: calc(var(--f) * 0.85);
+    padding: calc(var(--h) * 0.4) calc(var(--w) * 3);
+    border: 1px dashed whitesmoke;
+    margin-left: calc(var(--w) * 2);
+}

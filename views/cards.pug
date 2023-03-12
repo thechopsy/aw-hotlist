@@ -7,6 +7,7 @@ html
     link(rel="stylesheet", href="https://fonts.googleapis.com/css?family=Source+Sans+Pro")
     link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css")
     link(rel="stylesheet", href="/assets/app.css")
+    link(rel="stylesheet", href="/assets/cards.css")
     title= 'AdultWork » Hot List'
   body
     h1= 'AdultWork » Hot List'
@@ -22,3 +23,5 @@ html
     script.
       const IDS = [!{ (ids || [0]).join(',') }];
     script(src="/assets/app.js")
+    script(src="/assets/deck.js")
+    script(src="/assets/cards.js")
